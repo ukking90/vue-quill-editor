@@ -105,12 +105,16 @@
 
           // Instance
           this.quill = new Quill(this.$refs.editor, this._options)
-          
+
           this.quill.enable(false)
 
           // Set editor content
           if (this.value || this.content) {
-            this.quill.pasteHTML(this.value || this.content)
+//            this.quill.pasteHTML(this.value || this.content)
+            const editorEl = this.quill.container.getElementsByClassName('ql-editor');
+            if (editorEl && editorEl.length > 0) {
+                editorEl[0].innerHTML = this.content
+            }
           }
 
           // Disabled editor
